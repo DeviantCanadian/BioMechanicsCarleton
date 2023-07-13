@@ -408,8 +408,6 @@ def main():
         #canvas = tk.Canvas(window, width=200, height=183)
         #canvas.grid(row=0, column=4, rowspan=2, columnspan=2, padx= 10, pady=10)
         camera = cv2.VideoCapture(1)
-        camera.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0.25)
-
 
         camera.set(cv2.CAP_PROP_EXPOSURE, 100)
 
@@ -422,14 +420,14 @@ def main():
                 messagebox.showerror(title='Imaging Failure', message="The Camera Couldn't Load, Click the Image to Retry")
                 return
 
-            #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            #resize = cv2.resize(gray, (200, 183))
-            #image = Image.fromarray(resize)
-            cv2.imshow('temp', frame)
-            #fixed = ImageTk.PhotoImage(image)
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            resize = cv2.resize(gray, (200, 183))
+            image = Image.fromarray(resize)
+            #cv2.imshow('temp', frame)
+            fixed = ImageTk.PhotoImage(image)
 
-            #lbl.config(image=fixed)
-            #lbl.image = fixed
+            lbl.config(image=fixed)
+            lbl.image = fixed
             lbl.bind('<Button-1>', EnlargedVideo)
 
             window.after(1, update)
